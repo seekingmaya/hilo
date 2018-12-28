@@ -188,7 +188,10 @@ body {
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
                 justify-content: space-between;
-        padding: 0; }
+        padding: 0;
+        width: 65.5%;
+        margin-left: auto;
+        margin-right: auto; }
       .info__first-page {
         -webkit-box-ordinal-group: 2;
             -ms-flex-order: 1;
@@ -229,11 +232,14 @@ body {
         .info__instagram--desktop {
           display: inline-block; }
       .info__address {
-        margin-bottom: 0; }
+        margin-bottom: 0;
+        -webkit-box-ordinal-group: 2;
+            -ms-flex-order: 1;
+                order: 1; }
       .info__second-page-text {
-        font-size: 0.6677vw;
+        font-size: 0.6335vw;
         line-height: 1.3333em;
-        margin-bottom: 1.8vh; }
+        margin-bottom: 1.2vh; }
       .info__right-column {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -251,20 +257,21 @@ body {
       .info__header {
         font-size: 0.6677vw;
         line-height: 1.3333em;
-        margin-bottom: 1.8vh; }
+        margin-bottom: 1.5vh; }
       .info__artists, .info__director, .info__curator {
         margin-bottom: 0; }
       .info__curator .info__second-page-text {
         margin-bottom: 0; }
       .info__description {
         font-size: 0.6677vw;
-        line-height: 1.3333em; }
+        line-height: 1.3333em;
+        margin-bottom: 0; }
         .info__description--mobile {
           display: none; }
         .info__description--desktop {
           display: block; }
       .info__small-text {
-        font-size: 0.6677vw;
+        font-size: 0.6335vw;
         line-height: 1.3333em;
         margin-bottom: 1.8vh; }
       .info__schedule {
@@ -274,8 +281,8 @@ body {
       .info__break {
         display: none; }
       .info__instagram-svg {
-        width: 28px;
-        height: 28px; }
+        width: 20px;
+        height: 20px; }
       .info__dot {
         display: initial;
         margin-right: 0.22em; } }
@@ -366,6 +373,7 @@ body {
       margin-bottom: 5.3vh;
       -webkit-transition: opacity .85s;
       transition: opacity .85s;
+      -webkit-transform: translateZ(0);
       pointer-events: none; } }
 
 .slider {
@@ -514,8 +522,8 @@ body {
         max-width: 34vw;
         width: 22vw; }
       .slide__artist {
-        font-size: 0.8095vw;
-        letter-spacing: 0.034815em;
+        font-size: 0.81vw;
+        letter-spacing: 0.0348em;
         margin-bottom: .6em;
         -webkit-transition: opacity .85s;
         transition: opacity .85s; }
@@ -615,7 +623,8 @@ body {
     -webkit-transition: opacity 0.4s cubic-bezier(0.02, 0.01, 0.47, 1);
     transition: opacity 0.4s cubic-bezier(0.02, 0.01, 0.47, 1);
     -webkit-transition-delay: 0.4s;
-            transition-delay: 0.4s; } }
+            transition-delay: 0.4s;
+    -webkit-transform: translateZ(0); } }
 
 .d__scene {
   width: 100%;
