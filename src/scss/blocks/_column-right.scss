@@ -1,0 +1,11 @@
+.column-right {
+    display: none;
+    @media(min-width: $desktop) {
+        position: relative;
+        width: 12.5%;
+        display: flex;
+        opacity: 0;
+        z-index: -1;
+        flex-direction: column;
+    }
+}

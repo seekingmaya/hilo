@@ -1,0 +1,31 @@
+.nav {
+    display: none;
+    @media(min-width: $desktop) {
+        transition: opacity .4s cubic-bezier(.455, .03, .515, .955);
+        transition-delay: 0.4s;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        right: -0.8vw;
+        transform: translateY(-50%);
+        &__item {
+            font-size: 0.52vw;
+            line-height: 1.33em;
+            letter-spacing: 0.11em;
+            color: #9b9b9b;
+            text-align: right;
+            text-decoration: none;
+            &:hover {
+                color: black;
+            }
+        }
+        &__item~&__item {
+            margin-top: 1.3em;
+        }
+    }
+}

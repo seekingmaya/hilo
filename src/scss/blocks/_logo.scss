@@ -1,0 +1,41 @@
+.logo {
+    width: 27.14vmin;
+    padding-top: 17.5vmin;
+    height: auto;
+    cursor: pointer;
+    margin-bottom: 2.5vmin;
+    background-color: white;
+    text-align: center;
+    &__svg {
+        width: 100%;
+        height: 100%;
+        .st0 {
+            fill: none;
+            stroke: #000000;
+        }
+    }
+    @media(max-width: $desktop - 1) and (orientation: landscape) {
+        padding-top: 5vh;
+    }
+    @media(min-width: $desktop) {
+        // display: none; // width: 12.5%;
+        z-index: 1;
+        width: 100%;
+        background-color: transparent; // height: 100%;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        // opacity: 0;
+        margin: 0;
+        padding: 0; // margin-bottom: 0;
+        // transition: opacity 0.4s cubic-bezier(.02, .01, .47, 1);
+        -webkit-transform: translateZ(0); //to remove jumping due to pixel rounding during transition in crome
+        pointer-events: none;
+        &__wrapper {
+            width: 4.5vw;
+        }
+        &__svg {
+            height: auto;
+        }
+    }
+}
