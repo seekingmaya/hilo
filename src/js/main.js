@@ -4,6 +4,7 @@ import '../img/favicon.ico';
 require('intersection-observer');
 
 import { generateSlides, shuffledData } from './generateSlides';
+import { debug } from "util";
 
 generateSlides();
 
@@ -15,6 +16,7 @@ window.addEventListener('load', function () {
     let slides = document.querySelectorAll(".slide");
     let cube = document.querySelector('.d__cube');
     let back = document.querySelector(".d__cube-face--back");
+    let sliderWrapper = document.querySelector(".slider__wrapper");
     let timerId;
     let slideIndex = 0;
     let background1 = document.querySelector(".container__background--1");
@@ -27,10 +29,46 @@ window.addEventListener('load', function () {
 
     sliderLogo.forEach(logo => {
         logo.addEventListener('click', (e) => {
-            e.stopPropagation();
+            // e.stopPropagation();
             container.classList.toggle("show-info");
         });
     });
+
+    //intro animation
+    if (document.documentElement.clientWidth > 1366 || document.documentElement.clientWidth > document.documentElement.clientHeight) {
+        let currentSlide = document.querySelector(".show-slide");
+
+        currentSlide.addEventListener("animationend", () => {
+            // setTimeout(changeBorder, 850, 0);
+            currentSlide.style.animation = "initial";
+            document.documentElement.style.setProperty('--edge-width', "5px");
+            changeBorder(0);
+            runTimer();
+        });
+    }
+    else {
+        let currentSlide = document.querySelector(".show-slide");
+        let intro = document.querySelector(".intro");
+        currentSlide.style.animation = "initial";
+        intro.style.zIndex = "-1";
+        intro.style.opacity = "0";
+        intro.style.animation = "initial";
+
+        document.documentElement.style.setProperty('--edge-width', "5px");
+        runTimer();
+        window.addEventListener('click', detectInteraction);
+        window.addEventListener('touchstart', detectInteraction);
+        slider.addEventListener('wheel', detectInteraction);
+    }
+
+    function detectInteraction() {
+        clearInterval(timerId);
+        slides.forEach(slide => slide.classList.add("slide--visible"));
+        window.removeEventListener('click', detectInteraction);
+        window.removeEventListener('touchstart', detectInteraction);
+        slider.removeEventListener('wheel', detectInteraction);
+    }
+
 
 
     //scroll to slide when nav clicked
@@ -39,7 +77,7 @@ window.addEventListener('load', function () {
         el.addEventListener('click', e => {
             if (TweenLite) {
                 e.preventDefault();
-                e.stopPropagation();
+                // e.stopPropagation();
                 let n = parseInt(el.href.split("#slide")[1]);
                 let topOffset = slider.clientHeight * n;
                 TweenLite.to(slider, 1, { scrollTo: topOffset });
@@ -90,7 +128,7 @@ window.addEventListener('load', function () {
         let current = document.querySelector(".show-slide");
         let currentNumber = parseInt(current.dataset.id);
         if (current) {
-            if (e) e.stopPropagation();
+            // if (e) e.stopPropagation();
             let newIndex = currentNumber > 0 ? currentNumber - 1 : slides.length - 1;
             let newSlide = slides[newIndex];
 
@@ -102,7 +140,7 @@ window.addEventListener('load', function () {
             }
 
             newSlide.classList.add("show-slide");
-            setTimeout(changeBorder, 400, newIndex);
+            setTimeout(changeBorder, 850, newIndex);
 
         }
     }
@@ -113,7 +151,7 @@ window.addEventListener('load', function () {
         let current = document.querySelector(".show-slide");
         let currentNumber = parseInt(current.dataset.id);
         if (current) {
-            if (e) e.stopPropagation();
+            // if (e) e.stopPropagation();
             let newIndex = currentNumber < slides.length - 1 ? currentNumber + 1 : 0;
             let newSlide = slides[newIndex];
 
@@ -121,11 +159,13 @@ window.addEventListener('load', function () {
 
             if (TweenLite) {
 
-                TweenLite.to(slider, 0, { scrollTo: slider.clientHeight * newIndex });
+                setTimeout(() => {
+                    TweenLite.to(slider, 0, { scrollTo: slider.clientHeight * newIndex });
+                }, 850);
             }
 
             newSlide.classList.add("show-slide");
-            setTimeout(changeBorder, 400, newIndex);
+            setTimeout(changeBorder, 850, newIndex);
         }
     }
 
@@ -151,18 +191,12 @@ window.addEventListener('load', function () {
 
     }
 
-    //intro animation
-    setTimeout(() => {
-        changeBorder(0);
-        runTimer();
-    }, 50);
-
     //change slides every 5secs
 
     function runTimer() {
         timerId = setInterval(() => {
             moveRight();
-        }, 5000);
+        }, 3000);
     }
 
 
@@ -179,12 +213,9 @@ window.addEventListener('load', function () {
 
     //zoom in 
 
-    back.addEventListener('click', zoom);
+    sliderWrapper.addEventListener('click', zoom);
 
     function zoom(e) {
-        if (e && e.target.classList.contains("slide__portfolio") || container.classList.contains("show-info") || container.classList.contains("nav__item")) {
-            return;
-        }
         sliderParent.classList.toggle("slider--big");
         cube.classList.toggle("d__cube--big");
         checkTimer();

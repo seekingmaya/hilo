@@ -2,6 +2,7 @@
     width: 27.14vmin;
     padding-top: 17.5vmin;
     height: auto;
+    -webkit-transform: translateZ(0); //to remove jumping due to pixel rounding during transition in crome
     cursor: pointer;
     margin-bottom: 2.5vmin;
     background-color: white;
@@ -14,22 +15,13 @@
             stroke: #000000;
         }
     }
-    @media(max-width: $desktop - 1) and (orientation: landscape) {
-        padding-top: 5vh;
-    }
-    @media(min-width: $desktop) {
-        // display: none; // width: 12.5%;
+    @media (orientation: landscape),
+    screen and (min-width: $big-desktop) and (orientation: portrait) {
         z-index: 1;
         width: 100%;
         background-color: transparent; // height: 100%;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: space-between;
-        // opacity: 0;
         margin: 0;
-        padding: 0; // margin-bottom: 0;
-        // transition: opacity 0.4s cubic-bezier(.02, .01, .47, 1);
-        -webkit-transform: translateZ(0); //to remove jumping due to pixel rounding during transition in crome
+        padding: 0;
         pointer-events: none;
         &__wrapper {
             width: 4.5vw;

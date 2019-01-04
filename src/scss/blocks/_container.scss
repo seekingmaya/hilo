@@ -21,17 +21,18 @@
             display: block;
         }
     }
-    @media(min-width: $desktop) {
+    @media (orientation: landscape),
+    screen and (min-width: $big-desktop) and (orientation: portrait) {
         &__content {
             flex-grow: 1;
-            width: 75%;
+            width: 70%;
             display: block;
             height: 100%;
         }
         &__background {
             position: absolute;
             background-repeat: no-repeat;
-            background-size: 250%;
+            background-size: 300%;
             background-position: 50%;
             top: 0;
             right: 0;
@@ -40,7 +41,13 @@
             transition: opacity .85s cubic-bezier(.455, .03, .515, .955);
             &\--1 {
                 opacity: 1;
+                background-color: black;
             }
+        }
+    }
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        &__content {
+            width: 60%;
         }
     }
 }

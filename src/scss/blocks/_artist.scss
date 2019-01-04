@@ -1,6 +1,6 @@
 .artist {
     display: none;
-    @media(min-width: $desktop) {
+    @media (orientation: landscape),  screen and (min-width: $big-desktop) and (orientation: portrait) {
         // margin-top: auto;
         position: relative;
         opacity: 0;
@@ -20,20 +20,23 @@
             }
         }
         &__name {
-            font-size: .67vw;
-            letter-spacing: 0.0348em;
+            font-size: 0.5983vw;
+            letter-spacing: 0.033em;
             margin-bottom: .9em;
             transition: opacity .85s;
             text-decoration: none;
             color: black;
             display: block;
             text-align: left;
+            &:hover~.artist__portfolio {
+                color: black;
+            }
         }
         &__portfolio {
             text-align: left;
             font-size: 0.6vw;
             letter-spacing: 0.035em;
-            transition: opacity .85s;
+            transition: opacity .85s, color 0.3s;
             color: #9b9b9b;
             text-decoration: none;
             display: block;
