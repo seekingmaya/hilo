@@ -23,6 +23,8 @@ window.addEventListener('load', function () {
     let background2 = document.querySelector(".container__background--2");
     let scrollNav = document.querySelectorAll(".nav__item");
     let backgroundFirst = true;
+    let artists = document.querySelectorAll(".artist__item");
+    let navScrollInProgress = false;
 
 
     //show info
@@ -35,7 +37,7 @@ window.addEventListener('load', function () {
     });
 
     //intro animation
-    if (document.documentElement.clientWidth > 1366 || document.documentElement.clientWidth > document.documentElement.clientHeight) {
+    if (document.documentElement.clientWidth > 1366) {
         let currentSlide = document.querySelector(".show-slide");
 
         currentSlide.addEventListener("animationend", () => {
@@ -46,19 +48,17 @@ window.addEventListener('load', function () {
             runTimer();
         });
     }
-    else {
+    else if (document.documentElement.clientWidth < document.documentElement.clientHeight) {
         let currentSlide = document.querySelector(".show-slide");
-        let intro = document.querySelector(".intro");
         currentSlide.style.animation = "initial";
-        intro.style.zIndex = "-1";
-        intro.style.opacity = "0";
-        intro.style.animation = "initial";
-
-        document.documentElement.style.setProperty('--edge-width', "5px");
         runTimer();
         window.addEventListener('click', detectInteraction);
         window.addEventListener('touchstart', detectInteraction);
         slider.addEventListener('wheel', detectInteraction);
+    }
+    else if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
+        let currentSlide = document.querySelector(".show-slide");
+        currentSlide.style.animation = "initial";
     }
 
     function detectInteraction() {
@@ -80,24 +80,44 @@ window.addEventListener('load', function () {
                 // e.stopPropagation();
                 let n = parseInt(el.href.split("#slide")[1]);
                 let topOffset = slider.clientHeight * n;
-                TweenLite.to(slider, 1, { scrollTo: topOffset });
+
+                navScrollInProgress = true;
+                TweenLite.to(slider, 1, { scrollTo: topOffset, onComplete: onComplete });
             }
         });
     });
+
+    //prevents nav dots for slides that's not the tagret lighting up when user clicks on nav
+
+    function onComplete() {
+        navScrollInProgress = false;
+        let currentSlide = document.querySelector(".show-slide");
+
+        scrollNav.forEach(nav => {
+            nav.classList.remove("scrolled");
+            if (currentSlide.id == nav.href.split("#")[1]) {
+                nav.classList.add("scrolled");
+            }
+        });
+    }
 
     const intersectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
 
 
-            let artist = document.querySelector(`#artist${entry.target.dataset.id}`);
+            let artist = artists[parseInt(entry.target.dataset.id)];
 
             if (entry.intersectionRatio >= 0.6) {
 
-                artist.style.zIndex = '1';
+                artists.forEach(artist => artist.style.zIndex = "-1");
+
+                artist.style.zIndex = "1";
+
                 slideIndex = parseInt(entry.target.dataset.id);
                 let newSlide = slides[slideIndex];
 
                 if (!newSlide.classList.contains("show-slide")) {
+
                     let currentSlide = document.querySelector(".show-slide");
                     currentSlide.classList.remove("show-slide");
                     newSlide.classList.add("show-slide");
@@ -106,12 +126,16 @@ window.addEventListener('load', function () {
 
                 //show active nav when corresponding slide is visible
 
-                scrollNav.forEach(nav => {
-                    nav.classList.remove("scrolled");
-                    if (entry.target.id == nav.href.split("#")[1]) {
-                        nav.classList.add("scrolled");
-                    }
-                });
+                if (!navScrollInProgress) {
+                    scrollNav.forEach(nav => {
+                        nav.classList.remove("scrolled");
+                        if (entry.target.id == nav.href.split("#")[1]) {
+                            nav.classList.add("scrolled");
+                        }
+                    });
+                }
+
+
             }
 
             //change opacity for artist name when its slide is in viewport
