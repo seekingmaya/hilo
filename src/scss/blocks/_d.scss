@@ -290,10 +290,11 @@
         }
     }
     @media (max-width: $desktop - 1) and (orientation: landscape),
-    (min-device-width: 1024px) and (max-device-width: $desktop-big - 1) and (orientation: landscape),
+    (min-device-width: 1024px) and (max-device-width: $big-desktop - 1) and (orientation: landscape),
     (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
         &__cube {
             transform: scale(2.08);
+            transition: initial;
             .column-left {
                 z-index: 1;
                 opacity: 1;

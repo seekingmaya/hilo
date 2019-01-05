@@ -1,6 +1,6 @@
 .artist {
     display: none;
-    @media (orientation: landscape),  screen and (min-width: $big-desktop) and (orientation: portrait) {
+    @media (orientation: landscape), screen and (min-width: $big-desktop) and (orientation: portrait) {
         // margin-top: auto;
         position: relative;
         opacity: 0;
@@ -14,14 +14,18 @@
             top: 0;
             left: 0;
             opacity: 0;
-            &:first-child {
-                opacity: 1;
+            z-index: 0;
+            &\--active {
+                z-index: 1;
                 position: static;
-            }
+            } // &:first-child {
+            //     opacity: 1;
+            //     position: static;
+            // }
         }
         &__name {
             font-size: 0.5983vw;
-            letter-spacing: 0.033em;
+            letter-spacing: 0.058em;
             margin-bottom: .9em;
             transition: opacity .85s;
             text-decoration: none;
@@ -35,7 +39,8 @@
         &__portfolio {
             text-align: left;
             font-size: 0.6vw;
-            letter-spacing: 0.035em;
+            line-height: 1.95em;
+            letter-spacing: 0.09em;
             transition: opacity .85s, color 0.3s;
             color: #9b9b9b;
             text-decoration: none;

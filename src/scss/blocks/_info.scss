@@ -93,12 +93,35 @@
     screen and (min-width: $big-desktop) and (orientation: portrait) {
         display: none;
     }
-    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    @media only screen and (min-device-width: 1024px) and (max-device-width: $big-desktop - 1) and (orientation: portrait),
+    (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
         &__small-text,
         &__second-page-text,
         &__description,
         &__header {
-            font-size: 2.5vmin;
+            font-size: 2.6vmin;
+            letter-spacing: 0.05em;
+        }
+        &__small-text,
+        &__description {
+            line-height: 2.8em;
+        }
+        &__second-page-text,
+        &__header {
+            line-height: 2.3em;
+        }
+        &__instagram-svg {
+            width: 4.6875vmin;
+            height: 4.6875vmin;
+        }
+        &__first-page {
+            padding-bottom: 5vmin;
+        }
+        &__second-page {
+            padding-bottom: 12vmin;
+        }
+        &__artists {
+            margin-bottom: 6vmax;
         }
     }
 }
