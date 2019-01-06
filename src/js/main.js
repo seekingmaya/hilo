@@ -83,6 +83,11 @@ window.addEventListener('load', function () {
 
                 navScrollInProgress = true;
                 TweenLite.to(slider, 1, { scrollTo: topOffset, onComplete: onComplete });
+
+
+                scrollNav.forEach(nav => nav.classList.remove("scrolled"));
+
+                el.classList.add("scrolled");
             }
         });
     });
@@ -91,14 +96,6 @@ window.addEventListener('load', function () {
 
     function onComplete() {
         navScrollInProgress = false;
-        let currentSlide = document.querySelector(".show-slide");
-
-        scrollNav.forEach(nav => {
-            nav.classList.remove("scrolled");
-            if (currentSlide.id == nav.href.split("#")[1]) {
-                nav.classList.add("scrolled");
-            }
-        });
     }
 
     const intersectionObserver = new IntersectionObserver((entries, observer) => {
