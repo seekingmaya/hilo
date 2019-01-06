@@ -22,10 +22,10 @@
         }
     }
     @media (orientation: landscape),
-    screen and (min-width: $big-desktop) and (orientation: portrait) {
+    screen and (min-width: $desktop) and (orientation: portrait) {
         &__content {
             flex-grow: 1;
-            width: 70%;
+            width: 60%;
             display: block;
             height: 100%;
         }

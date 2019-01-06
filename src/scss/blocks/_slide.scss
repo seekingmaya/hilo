@@ -44,7 +44,7 @@
         margin-top: auto;
     }
     @media (orientation: landscape),
-    screen and (min-width: $big-desktop) and (orientation: portrait) {
+    screen and (min-width: $desktop) and (orientation: portrait) {
         opacity: 0;
         z-index: -1;
         transition-delay: initial;
@@ -65,7 +65,7 @@
             }
         }
     }
-    @media only screen and (min-device-width: 1024px) and (max-device-width: $big-desktop - 1) and (orientation: portrait),
+    @media only screen and (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: portrait),
     (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
         &__artist {
             font-size: 2.86vw;
@@ -79,7 +79,7 @@
         }
     }
     @media(max-width: $desktop - 1) and (orientation: landscape),
-    (min-device-width: 1024px) and (max-device-width: $big-desktop - 1) and (orientation: landscape),
+    (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: landscape),
     (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
         opacity: 1;
         z-index: 1;

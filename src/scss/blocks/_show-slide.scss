@@ -4,13 +4,13 @@
     transition-delay: 0.85s; // .slide__img {
     //     opacity: 1;
     // }
-    @media (orientation: landscape), screen and (min-width: $big-desktop) and (orientation: portrait) {
+    @media (orientation: landscape), screen and (min-width: $desktop) and (orientation: portrait) {
         transition: opacity .85s cubic-bezier(.455, .03, .515, .955);
         transition-delay: 0.85s; // -webkit-transform: translateZ(0);
         &#slide0 {
             opacity: 1;
             animation: show-slide 9.7s cubic-bezier(.455, .03, .515, .955) forwards;
-            @media(max-width: $desktop - 1), (min-device-width: 1024px) and (max-device-width: $big-desktop - 1), (min-device-width: 768px) and (max-device-width: 1024px) {
+            @media(max-width: $desktop - 1), (min-device-width: 1024px) and (max-device-width: $desktop), (min-device-width: 768px) and (max-device-width: 1024px) {
                 animation: initial;
             }
         }

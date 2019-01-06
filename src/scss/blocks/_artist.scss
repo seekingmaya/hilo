@@ -1,7 +1,7 @@
 .artist {
     display: none;
-    @media (orientation: landscape), screen and (min-width: $big-desktop) and (orientation: portrait) {
-        // margin-top: auto;
+    @media (orientation: landscape), screen and (min-width: $desktop) and (orientation: portrait) {
+        height: 20%;
         position: relative;
         opacity: 0;
         z-index: -1;
@@ -9,6 +9,12 @@
         transition-delay: 0.4s;
         &__item {
             position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            left: 0;
+            bottom: 0;
             opacity: 0;
             transition: opacity .85s cubic-bezier(.455, .03, .515, .955);
             top: 0;
@@ -24,9 +30,9 @@
             // }
         }
         &__name {
-            font-size: 0.5983vw;
-            letter-spacing: 0.058em;
-            margin-bottom: .9em;
+            font-size: 0.5279vw;
+            letter-spacing: 0.1333em; // margin-bottom: .9em;
+            line-height: 2em;
             transition: opacity .85s;
             text-decoration: none;
             color: black;
@@ -38,9 +44,9 @@
         }
         &__portfolio {
             text-align: left;
-            font-size: 0.6vw;
-            line-height: 1.95em;
-            letter-spacing: 0.09em;
+            font-size: 0.5279vw;
+            letter-spacing: 0.1333em;
+            line-height: 2em;
             transition: opacity .85s, color 0.3s;
             color: #9b9b9b;
             text-decoration: none;
@@ -49,5 +55,9 @@
                 color: black;
             }
         }
+    }
+    @media (max-width: $desktop - 1) and (orientation: landscape),
+    (min-device-width: $desktop) and (max-device-width: $desktop) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        // opacity: 1; // z-index: 1;
     }
 }
