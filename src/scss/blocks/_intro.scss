@@ -16,9 +16,9 @@
         animation: hide-intro .85s cubic-bezier(.455, .03, .515, .955) 8s forwards;
         background-color: white;
     }
-    @media (max-width: $desktop - 1) and (orientation: landscape),
-    (min-device-width: 1024px) and (max-device-width: $big-desktop - 1) and (orientation: portrait),
-    (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    @media (max-width: $desktop - 1),
+    (min-device-width: 1024px) and (max-device-width: $big-desktop - 1),
+    (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
         display: none;
     }
 }
