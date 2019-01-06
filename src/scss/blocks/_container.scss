@@ -48,11 +48,7 @@
                 animation: border-fade-in 0.85s cubic-bezier(.455, .03, .515, .955) forwards;
             }
         }
-    } // @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-    //     &__content {
-    //         width: 60%;
-    //     }
-    // }
+    }
 }
 
 @keyframes border-fade-in {

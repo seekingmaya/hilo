@@ -14,12 +14,11 @@
         opacity: 1;
     }
     &__artist {
-        font-size: 4.3vw; // margin-bottom: .5em;
+        font-size: 4.3vw;
         letter-spacing: 0.091em;
         line-height: 1.9545em;
         text-decoration: none;
         color: black;
-        -webkit-transform: translateZ(0);
     }
     &__portfolio {
         color: #9b9b9b;
@@ -28,7 +27,6 @@
         letter-spacing: 0.091em;
         line-height: 1.9545em;
         transition: color .4s;
-        -webkit-transform: translateZ(0);
         &:hover {
             color: black;
         }
@@ -41,7 +39,7 @@
         background-position: 50% 50%;
         background-size: contain;
         margin: 0;
-        margin-bottom: 2vh; // opacity: 0;
+        margin-bottom: 2vh;
     }
     &__arrow\--down {
         margin-top: auto;
@@ -56,6 +54,7 @@
             margin: 0;
             height: 100%;
             width: 100%;
+            background-size: 80%;
         }
         &__artist {
             &\--mobile {
@@ -80,6 +79,9 @@
             font-size: 2.8646vw;
             letter-spacing: 0.091em;
             line-height: 1.9545em;
+        }
+        &__img {
+            background-size: 88%;
         }
     }
     @media(max-width: $desktop - 1) and (orientation: landscape),

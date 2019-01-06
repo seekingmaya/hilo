@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
     let backgroundFirst = true;
     let artists = document.querySelectorAll(".artist__item");
     let navScrollInProgress = false;
-    let desktop = window.matchMedia("(min-width: 1366px)");
+    let desktop = window.matchMedia("(min-width: 1024px)");
     let portraitOrientation = window.matchMedia("(orientation: portrait)");
     let landscapeOrientation = window.matchMedia("(orientation: landscape)");
     let landscape = false;
@@ -59,22 +59,18 @@ window.addEventListener('load', function () {
     landscapeOrientation.addListener(landscapeHandler);
 
     function portraitHandler(mq) {
-        if (landscape) {
+        if (landscape && !desktop.matches) {
             window.addEventListener('click', detectInteraction);
             window.addEventListener('touchstart', detectInteraction);
             slider.addEventListener('wheel', detectInteraction);
             landscape = false;
         }
-        // else {
-
-        // }
 
     }
 
 
     function landscapeHandler(mq) {
         landscape = true;
-        clearInterval(timerId);
     }
 
 
@@ -91,7 +87,6 @@ window.addEventListener('load', function () {
     //show info
     sliderLogo.forEach(logo => {
         logo.addEventListener('click', (e) => {
-            // e.stopPropagation();
             container.classList.toggle("show-info");
         }
         );
@@ -179,7 +174,6 @@ window.addEventListener('load', function () {
         let current = document.querySelector(".show-slide");
         let currentNumber = parseInt(current.dataset.id);
         if (current) {
-            // if (e) e.stopPropagation();
             let newIndex = currentNumber < slides.length - 1 ? currentNumber + 1 : 0;
             let newSlide = slides[newIndex];
             current.classList.remove("show-slide");
