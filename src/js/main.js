@@ -1,17 +1,8 @@
 import "../scss/main.scss";
 import '../img/favicon.ico';
 require('intersection-observer');
-import {
-    generateSlides,
-    shuffledData
-}
+import { generateSlides, shuffledData } from './generateSlides';
 
-    from './generateSlides';
-import {
-    debug
-}
-
-    from "util";
 generateSlides();
 window.addEventListener('load', function () {
     let sliderLogo = document.querySelectorAll(".logo__wrapper");
@@ -132,8 +123,12 @@ window.addEventListener('load', function () {
         entries.forEach((entry) => {
             let artist = artists[parseInt(entry.target.dataset.id)];
             if (entry.intersectionRatio >= 0.6) {
-                artists.forEach(artist => artist.style.zIndex = "-1");
+                artists.forEach(artist => {
+                    artist.style.zIndex = "-1";
+                    artist.style.opacity = "0";
+                });
                 artist.style.zIndex = "1";
+                artist.style.opacity = "1";
                 slideIndex = parseInt(entry.target.dataset.id);
                 let newSlide = slides[slideIndex];
                 if (!newSlide.classList.contains("show-slide")) {
@@ -150,11 +145,7 @@ window.addEventListener('load', function () {
                     }
                     );
                 }
-            } //change opacity for artist name when its slide is in viewport
-            artist.style.opacity = `$ {
-                entry.intersectionRatio >=0.6 ? 1: 0
             }
-            `;
         }
         );
     }
@@ -218,12 +209,12 @@ window.addEventListener('load', function () {
             background2.style.opacity = '1';
         }
         backgroundFirst = !backgroundFirst;
-    } //change slides every 5secs
+    } //change slides every 4secs
     function runTimer() {
         timerId = setInterval(() => {
             moveRight();
         }
-            , 3000);
+            , 4000);
     }
     function checkTimer() {
         if (cube.classList.contains("d__cube--big")) {

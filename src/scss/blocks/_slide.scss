@@ -14,8 +14,9 @@
         opacity: 1;
     }
     &__artist {
-        font-size: 4.5vw;
-        margin-bottom: .5em;
+        font-size: 4.3vw; // margin-bottom: .5em;
+        letter-spacing: 0.091em;
+        line-height: 1.9545em;
         text-decoration: none;
         color: black;
         -webkit-transform: translateZ(0);
@@ -23,7 +24,9 @@
     &__portfolio {
         color: #9b9b9b;
         text-decoration: none;
-        font-size: 4.5vw;
+        font-size: 4.3vw;
+        letter-spacing: 0.091em;
+        line-height: 1.9545em;
         transition: color .4s;
         -webkit-transform: translateZ(0);
         &:hover {
