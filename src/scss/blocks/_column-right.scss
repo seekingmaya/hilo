@@ -2,7 +2,7 @@
     display: none;
     @media (orientation: landscape), screen and (min-width: $desktop) and (orientation: portrait) {
         position: relative;
-        width: 15%;
+        width: 20%;
         display: flex;
         opacity: 0;
         z-index: -1;

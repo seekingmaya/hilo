@@ -36,6 +36,9 @@ window.addEventListener('load', function () {
             document.documentElement.style.setProperty('--edge-width', "5px");
             changeBorder(0);
             runTimer();
+            setTimeout(function () {
+                zoom();
+            }, 4850);
         }
         );
     }
@@ -226,14 +229,15 @@ window.addEventListener('load', function () {
         }
     } //zoom in 
     sliderWrapper.addEventListener('click', zoom);
-    function zoom(e) {
+    function zoom() {
         sliderParent.classList.toggle("slider--big");
         cube.classList.toggle("d__cube--big");
         checkTimer();
         if (!cube.classList.contains("d__cube--big")) {
             changeBorder(parseInt(document.querySelector(".show-slide").dataset.id));
         }
-    } //change slides on key press
+    }
+    //change slides on key press
     window.addEventListener('keydown', (e) => {
         if (e.defaultPrevented) {
             return; // Do nothing if the event was already processed

@@ -69,16 +69,17 @@
         }
     }
     @media only screen and (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: portrait),
-    (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+        padding-bottom: 4vmin;
         &__artist {
-            font-size: 2.86vw;
-            line-height: 1.95em;
-            letter-spacing: 0.09em;
+            font-size: 2.8646vw;
+            letter-spacing: 0.091em;
+            line-height: 1.9545em;
         }
         &__portfolio {
-            font-size: 2.86vw;
-            line-height: 1.95em;
-            letter-spacing: 0.09em;
+            font-size: 2.8646vw;
+            letter-spacing: 0.091em;
+            line-height: 1.9545em;
         }
     }
     @media(max-width: $desktop - 1) and (orientation: landscape),
