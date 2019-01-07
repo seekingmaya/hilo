@@ -58,7 +58,7 @@
         &__cube-face {
             display: block;
             position: absolute;
-            background-color: transparent; // transition: all 1.85s linear;
+            background-color: transparent;
         }
         &__cube-face\--top-right {
             width: calc(25% + var(--edge-width, 5px));
@@ -218,20 +218,20 @@
             &::before {
                 content: '';
                 position: absolute;
-                top: -2px;
+                top: -1px;
                 right: 0;
-                height: 4px;
-                width: calc(100% - 4px);
+                height: 2px;
+                width: calc(100% - 2px);
                 background-color: white;
                 z-index: 30;
             }
             &::after {
                 content: '';
                 position: absolute;
-                bottom: -2px;
+                bottom: -1px;
                 right: 0;
-                height: 4px;
-                width: calc(100% - 4px);
+                height: 2px;
+                width: calc(100% - 2px);
                 background-color: white;
                 z-index: 30;
             }
