@@ -24,10 +24,7 @@ window.addEventListener('load', function () {
     let artists = document.querySelectorAll(".artist__item");
     let navScrollInProgress = false;
     let tablet = window.matchMedia(`(max-width: 1024px),(min-device-width: 1024px) and (max-device-width: 1024px)
-    ,(min-device-width: 1366px) and (max-device-width: 1366px)`);
-    // let portraitOrientation = window.matchMedia("(orientation: portrait)");
-    // let landscapeOrientation = window.matchMedia("(orientation: landscape)");
-    // let landscape = false;
+    ,(device-width: 1366px) and (device-height: 1024px) `);
 
     function init() {
         if (!tablet.matches) {

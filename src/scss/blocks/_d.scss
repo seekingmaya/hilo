@@ -31,9 +31,9 @@
             position: relative;
             transition: all .85s cubic-bezier(.455, .03, .515, .955);
             -webkit-font-smoothing: subpixel-antialiased;
-            transform: translateZ(0) scale(1.0, 1.0);
+            transform: scale(1.0, 1.0);
             &\--big {
-                transform: scale(2.079);
+                transform: scale(2.08);
                 .column-left {
                     z-index: 1;
                     opacity: 1;
@@ -296,6 +296,7 @@
         &__cube {
             transform: scale(2.08);
             transition: initial;
+            background-color: white;
             .column-left {
                 z-index: 1;
                 opacity: 1;
@@ -319,6 +320,8 @@
         }
         &__cube-face\--back:before {
             animation: none;
+            border: none;
+            background-clip: border-box;
         }
     }
 }
