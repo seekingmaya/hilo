@@ -22,7 +22,7 @@
         }
     }
     @media (orientation: landscape),
-    screen and (min-width: $desktop) and (orientation: portrait) {
+    screen and (min-width: 1280px) {
         &__content {
             display: block;
             height: 100%;

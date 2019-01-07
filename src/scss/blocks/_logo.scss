@@ -16,7 +16,7 @@
         }
     }
     @media (orientation: landscape),
-    screen and (min-width: $desktop) and (orientation: portrait) {
+    screen and (min-width: 1280px) {
         z-index: 1;
         width: 100%;
         background-color: transparent; // height: 100%;

@@ -25,13 +25,17 @@
         -webkit-overflow-scrolling: touch;
         height: 100%;
     }
+    &\--slides-visible {
+        .slide {
+            opacity: 1;
+        }
+    }
     @media (orientation: landscape),
-    screen and (min-width: $desktop) and (orientation: portrait) {
+    screen and (min-width: 1280px) {
         position: relative;
         padding: 0;
         background-color: transparent;
         &__content {
-            z-index: -1;
             position: relative;
             padding: 0;
             overflow-y: scroll;
@@ -52,11 +56,5 @@
             overflow: hidden;
             cursor: pointer;
         }
-        &\--big {
-            .slide {
-                opacity: 1;
-            }
-        }
     }
-    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {}
 }

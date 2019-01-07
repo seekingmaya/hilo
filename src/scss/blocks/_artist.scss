@@ -1,6 +1,6 @@
 .artist {
     display: none;
-    @media (orientation: landscape), screen and (min-width: $desktop) and (orientation: portrait) {
+    @media (orientation: landscape), screen and (min-width: 1280px) {
         height: 20%;
         position: relative;
         opacity: 0;
@@ -28,7 +28,7 @@
         }
         &__name {
             font-size: 0.5279vw;
-            letter-spacing: 0.1333em; // margin-bottom: .9em;
+            letter-spacing: 0.1333em;
             line-height: 2em;
             transition: opacity .85s;
             text-decoration: none;
@@ -53,9 +53,5 @@
                 color: black;
             }
         }
-    }
-    @media (max-width: $desktop - 1) and (orientation: landscape),
-    (min-device-width: $desktop) and (max-device-width: $desktop) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-        // opacity: 1; // z-index: 1;
     }
 }

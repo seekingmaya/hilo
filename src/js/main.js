@@ -17,23 +17,21 @@ window.addEventListener('load', function () {
     let slideIndex = 0;
     let background1 = document.querySelector(".container__background--1");
     let background2 = document.querySelector(".container__background--2");
+    let blackCube = document.querySelector(".container__background--3");
     let intro = document.querySelector(".intro");
     let scrollNav = document.querySelectorAll(".nav__item");
     let backgroundFirst = true;
     let artists = document.querySelectorAll(".artist__item");
     let navScrollInProgress = false;
-    let desktop = window.matchMedia("(min-width: 1024px)");
-    let tablet = window.matchMedia(`(max-width: 1023px),(min-device-width: 1024px) and (max-device-width: 1024px)
+    let tablet = window.matchMedia(`(max-width: 1024px),(min-device-width: 1024px) and (max-device-width: 1024px)
     ,(min-device-width: 1366px) and (max-device-width: 1366px)`);
-    let portraitOrientation = window.matchMedia("(orientation: portrait)");
-    let landscapeOrientation = window.matchMedia("(orientation: landscape)");
-    let landscape = false;
+    // let portraitOrientation = window.matchMedia("(orientation: portrait)");
+    // let landscapeOrientation = window.matchMedia("(orientation: landscape)");
+    // let landscape = false;
 
-
-    //intro animation
-
-    function init(tabletMediaQuery, portraitMediaQuery) {
-        if (!tabletMediaQuery.matches) {
+    function init() {
+        if (!tablet.matches) {
+            //intro animation
             intro.addEventListener("animationend", introAnimation);
             let currentSlide = document.querySelector(".show-slide");
             currentSlide.addEventListener("animationend", () => {
@@ -44,7 +42,6 @@ window.addEventListener('load', function () {
                 setTimeout(function () {
                     sliderParent.classList.add("slider--big");
                     cube.classList.add("d__cube--big");
-                    checkTimer();
                 }, 4850);
             }
             );
@@ -53,13 +50,11 @@ window.addEventListener('load', function () {
             tabletAndMobileAnimation();
         }
 
-        portraitOrientation.addListener(portraitHandler);
-        landscapeOrientation.addListener(landscapeHandler);
-        tablet.addListener(checkInteraction);
+        checkInteraction();
 
     }
 
-    init(tablet, portraitOrientation);
+    init();
 
     function introAnimation() {
         intro.style.animation = "initial";
@@ -70,21 +65,10 @@ window.addEventListener('load', function () {
     function tabletAndMobileAnimation() {
         let currentSlide = document.querySelector(".show-slide");
         currentSlide.style.animation = "initial";
+        intro.style.animation = "initial";
+        blackCube.style.animation = "initial";
+        document.documentElement.style.setProperty('--edge-width', "5px");
         runTimer();
-        checkInteraction();
-    }
-
-    function portraitHandler(mq) {
-        if (landscape && tablet.matches) {
-            checkInteraction();
-            landscape = false;
-        }
-
-    }
-
-
-    function landscapeHandler(mq) {
-        landscape = true;
     }
 
 
@@ -98,7 +82,7 @@ window.addEventListener('load', function () {
 
     function detectInteraction() {
         clearInterval(timerId);
-        slides.forEach(slide => slide.classList.add("slide--visible"));
+        slider.classList.add("slider--slides-visible");
         window.removeEventListener('click', detectInteraction);
         window.removeEventListener('touchstart', detectInteraction);
         slider.removeEventListener('wheel', detectInteraction);
@@ -106,13 +90,7 @@ window.addEventListener('load', function () {
 
 
     //show info
-    sliderLogo.forEach(logo => {
-        logo.addEventListener('click', (e) => {
-            container.classList.toggle("show-info");
-        }
-        );
-    }
-    );
+    sliderLogo.forEach(logo => logo.addEventListener('click', (e) => container.classList.toggle("show-info")));
 
 
 
@@ -126,49 +104,53 @@ window.addEventListener('load', function () {
                 navScrollInProgress = true;
                 //prevents nav dots for slides that's not the tagret lighting up when user clicks on nav
                 TweenLite.to(slider, 1, { scrollTo: topOffset, onComplete: () => navScrollInProgress = false });
-                scrollNav.forEach(nav => nav.classList.remove("scrolled"));
-                el.classList.add("scrolled");
+                activateNav(el);
             }
         }
         );
     }
     );
 
+    function activateNav(nav) {
+        scrollNav.forEach(nav => nav.classList.remove("scrolled"));
+        nav.classList.add("scrolled");
+    }
+
     const intersectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
             let artist = artists[parseInt(entry.target.dataset.id)];
             if (entry.intersectionRatio >= 0.6) {
+                if (!navScrollInProgress) { }
                 artists.forEach(artist => {
                     artist.style.zIndex = "-1";
                     artist.style.opacity = "0";
                 });
                 artist.style.zIndex = "1";
                 artist.style.opacity = "1";
+
                 slideIndex = parseInt(entry.target.dataset.id);
                 let newSlide = slides[slideIndex];
+
                 if (!newSlide.classList.contains("show-slide")) {
                     let currentSlide = document.querySelector(".show-slide");
                     currentSlide.classList.remove("show-slide");
                     newSlide.classList.add("show-slide");
-                } //show active nav when corresponding slide is visible
+                    setTimeout(changeBorder, 850, slideIndex);
+                }
+                //show active nav when corresponding slide is visible
                 if (!navScrollInProgress) {
-                    scrollNav.forEach(nav => {
-                        nav.classList.remove("scrolled");
-                        if (entry.target.id == nav.href.split("#")[1]) {
-                            nav.classList.add("scrolled");
-                        }
-                    }
-                    );
+                    let nav = document.querySelector(`[href='#slide${slideIndex}']`);
+                    activateNav(nav);
+
                 }
             }
         }
         );
-    }
-        , {
-            threshold: 0.6
-        }
-    );
+    }, { threshold: 0.6 });
+
     slides.forEach((element) => intersectionObserver.observe(element));
+
+
     function moveLeft(e) {
         let current = document.querySelector(".show-slide");
         let currentNumber = parseInt(current.dataset.id);
@@ -178,10 +160,7 @@ window.addEventListener('load', function () {
             let newSlide = slides[newIndex];
             current.classList.remove("show-slide");
             if (TweenLite) {
-                TweenLite.to(slider, 0, {
-                    scrollTo: slider.clientHeight * newIndex
-                }
-                );
+                TweenLite.to(slider, 0, { scrollTo: slider.clientHeight * newIndex });
             }
             newSlide.classList.add("show-slide");
             setTimeout(changeBorder, 850, newIndex);
@@ -225,28 +204,18 @@ window.addEventListener('load', function () {
         backgroundFirst = !backgroundFirst;
     } //change slides every 4secs
     function runTimer() {
-        timerId = setInterval(() => {
-            moveRight();
-        }
-            , 4000);
+        timerId = setInterval(() => { moveRight() }, 4000);
     }
-    function checkTimer() {
-        if (cube.classList.contains("d__cube--big")) {
-            clearInterval(timerId);
-        }
-        else {
-            clearInterval(timerId);
-            runTimer();
-        }
+    function stopTimer() {
+        clearInterval(timerId);
     } //zoom in 
     sliderWrapper.addEventListener('click', zoom);
     function zoom() {
         sliderParent.classList.toggle("slider--big");
         cube.classList.toggle("d__cube--big");
-        checkTimer();
-        if (!cube.classList.contains("d__cube--big")) {
-            changeBorder(parseInt(document.querySelector(".show-slide").dataset.id));
-        }
+        // if (!cube.classList.contains("d__cube--big")) {
+        //     changeBorder(parseInt(document.querySelector(".show-slide").dataset.id));
+        // }
     }
     //change slides on key press
     window.addEventListener('keydown', (e) => {
@@ -256,21 +225,24 @@ window.addEventListener('load', function () {
         switch (e.key) {
             case "Left": // IE/Edge specific value
                 moveLeft(e);
-                checkTimer();
+                stopTimer();
             case "ArrowLeft": moveLeft(e);
-                checkTimer();
+                stopTimer();
                 break;
             case "Right": // IE/Edge specific value
                 moveRight(e);
-                checkTimer();
+                stopTimer();
             case "ArrowRight": moveRight(e);
-                checkTimer();
+                stopTimer();
                 break;
             case " ": zoom(e);
+                stopTimer();
                 break;
             case "Esc": // IE/Edge specific value
+                stopTimer();
                 zoom(e);
             case "Escape": // Do something for "esc" key press.
+                stopTimer();
                 zoom(e);
                 break;
             default: return; // Quit when this doesn't handle the key event.

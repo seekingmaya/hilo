@@ -6,6 +6,7 @@ let data = [
     { firstname: 'florencia', lastname: 'walter', backgroundPosition: "center", desktopSize: '60%' },
     { firstname: 'samuel', lastname: 'lasso', backgroundPosition: "60% 70%", desktopSize: '60%' },
     { firstname: 'sol', lastname: 'pochat', backgroundPosition: "center", desktopSize: '60%' }
+
 ];
 
 export default data;
