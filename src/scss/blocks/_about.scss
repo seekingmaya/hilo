@@ -20,6 +20,8 @@
             font-size: 0.5279vw;
             line-height: 3em;
             letter-spacing: 0.0666em;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
     }
 }
