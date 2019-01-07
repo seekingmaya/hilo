@@ -1,5 +1,5 @@
 .column-left {
-    @media (orientation: landscape), screen and (min-width: 1280px) {
+    @media (orientation: landscape), screen and (min-width: $desktop) {
         display: none;
         z-index: -1;
         width: 20%;

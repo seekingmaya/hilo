@@ -1,6 +1,6 @@
 .column-right {
     display: none;
-    @media (orientation: landscape), screen and (min-width: 1280px) {
+    @media (orientation: landscape), screen and (min-width: $desktop) {
         position: relative;
         width: 20%;
         display: flex;

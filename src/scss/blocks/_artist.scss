@@ -1,6 +1,6 @@
 .artist {
     display: none;
-    @media (orientation: landscape), screen and (min-width: 1280px) {
+    @media (orientation: landscape), screen and (min-width: $desktop) {
         height: 20%;
         position: relative;
         opacity: 0;

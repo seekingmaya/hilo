@@ -90,10 +90,10 @@
         height: 7vmin;
     }
     @media (orientation: landscape),
-    screen and (min-width: 1280px) {
+    screen and (min-width: $desktop) {
         display: none;
     }
-    @media only screen and (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: portrait),
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait),
     (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
         display: initial;
         &__small-text,

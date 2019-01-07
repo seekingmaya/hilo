@@ -48,7 +48,7 @@
         margin-top: auto;
     }
     @media (orientation: landscape),
-    screen and (min-width: 1280px) {
+    screen and (min-width: $desktop) {
         opacity: 0;
         z-index: -1;
         transition-delay: initial;
@@ -76,7 +76,7 @@
             }
         }
     }
-    @media only screen and (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
     (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
         padding-bottom: 4vmin;
         &__artist {
