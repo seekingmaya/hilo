@@ -40,6 +40,9 @@
         background-size: contain;
         margin: 0;
         margin-bottom: 2vh;
+        &\--desktop {
+            display: none;
+        }
     }
     &__arrow\--down {
         margin-top: auto;
@@ -52,8 +55,15 @@
         padding: 0; // margin: 0;
         &__img {
             margin: 0;
-            height: 100%;
-            width: 50%;
+            height: 100%; // @media not screen and (min-device-width: 1024px) and (max-device-width: $desktop) and (-webkit-min-device-pixel-ratio: 2), (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            background-image: none !important;
+            &\--desktop {
+                width: 100%;
+                display: block;
+                height: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            } // }
         }
         &__artist {
             &\--mobile {
@@ -66,7 +76,7 @@
             }
         }
     }
-    @media only screen and (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: portrait),
+    @media only screen and (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
     (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
         padding-bottom: 4vmin;
         &__artist {
@@ -79,14 +89,8 @@
             letter-spacing: 0.091em;
             line-height: 1.9545em;
         }
-        &__img {
+        &__img\--desktop {
             background-size: 88%;
         }
-    }
-    @media(max-width: $desktop - 1) and (orientation: landscape),
-    (min-device-width: 1024px) and (max-device-width: $desktop) and (orientation: landscape),
-    (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-        opacity: 1;
-        z-index: 1;
     }
 }

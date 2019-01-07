@@ -17,6 +17,7 @@ window.addEventListener('load', function () {
     let slideIndex = 0;
     let background1 = document.querySelector(".container__background--1");
     let background2 = document.querySelector(".container__background--2");
+    let intro = document.querySelector(".intro");
     let scrollNav = document.querySelectorAll(".nav__item");
     let backgroundFirst = true;
     let artists = document.querySelectorAll(".artist__item");
@@ -33,13 +34,11 @@ window.addEventListener('load', function () {
 
     function init(tabletMediaQuery, portraitMediaQuery) {
         if (!tabletMediaQuery.matches) {
+            intro.addEventListener("animationend", introAnimation);
             let currentSlide = document.querySelector(".show-slide");
             currentSlide.addEventListener("animationend", () => {
 
                 currentSlide.style.animation = "initial";
-                let intro = document.querySelector(".intro");
-                intro.style.animation = "initial";
-                document.documentElement.style.setProperty('--edge-width', "5px");
                 changeBorder(0);
                 runTimer();
                 setTimeout(function () {
@@ -50,15 +49,8 @@ window.addEventListener('load', function () {
             }
             );
         }
-        else if (portraitMediaQuery.matches) {
-            let currentSlide = document.querySelector(".show-slide");
-            currentSlide.style.animation = "initial";
-            runTimer();
-            checkInteraction();
-        }
         else {
-            let currentSlide = document.querySelector(".show-slide");
-            currentSlide.style.animation = "initial";
+            tabletAndMobileAnimation();
         }
 
         portraitOrientation.addListener(portraitHandler);
@@ -68,6 +60,19 @@ window.addEventListener('load', function () {
     }
 
     init(tablet, portraitOrientation);
+
+    function introAnimation() {
+        intro.style.animation = "initial";
+        document.documentElement.style.setProperty('--edge-width', "5px");
+        intro.removeEventListener("animationend", introAnimation);
+    }
+
+    function tabletAndMobileAnimation() {
+        let currentSlide = document.querySelector(".show-slide");
+        currentSlide.style.animation = "initial";
+        runTimer();
+        checkInteraction();
+    }
 
     function portraitHandler(mq) {
         if (landscape && tablet.matches) {
@@ -115,24 +120,20 @@ window.addEventListener('load', function () {
     scrollNav.forEach(el => {
         el.addEventListener('click', e => {
             if (TweenLite) {
-                e.preventDefault(); // e.stopPropagation();
+                e.preventDefault();
                 let n = parseInt(el.href.split("#slide")[1]);
                 let topOffset = slider.clientHeight * n;
                 navScrollInProgress = true;
-                TweenLite.to(slider, 1, {
-                    scrollTo: topOffset, onComplete: onComplete
-                }
-                );
+                //prevents nav dots for slides that's not the tagret lighting up when user clicks on nav
+                TweenLite.to(slider, 1, { scrollTo: topOffset, onComplete: () => navScrollInProgress = false });
                 scrollNav.forEach(nav => nav.classList.remove("scrolled"));
                 el.classList.add("scrolled");
             }
         }
         );
     }
-    ); //prevents nav dots for slides that's not the tagret lighting up when user clicks on nav
-    function onComplete() {
-        navScrollInProgress = false;
-    }
+    );
+
     const intersectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
             let artist = artists[parseInt(entry.target.dataset.id)];
