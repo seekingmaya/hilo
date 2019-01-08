@@ -16,7 +16,7 @@
         }
     }
     @media (orientation: landscape),
-    screen and (min-width: $big-desktop) and (orientation: portrait) {
+    screen and (min-width: $desktop) {
         z-index: 1;
         width: 100%;
         background-color: transparent; // height: 100%;
@@ -29,5 +29,10 @@
         &__svg {
             height: auto;
         }
+    }
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait),
+    (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+        padding-top: 11.7vmin;
+        width: 24.7vmin;
     }
 }
