@@ -39,7 +39,7 @@ window.addEventListener('load', function () {
                 setTimeout(function () {
                     sliderParent.classList.add("slider--big");
                     cube.classList.add("d__cube--big");
-                }, 4850);
+                }, 2850);
             }
             );
         }
@@ -210,9 +210,6 @@ window.addEventListener('load', function () {
     function zoom() {
         sliderParent.classList.toggle("slider--big");
         cube.classList.toggle("d__cube--big");
-        // if (!cube.classList.contains("d__cube--big")) {
-        //     changeBorder(parseInt(document.querySelector(".show-slide").dataset.id));
-        // }
     }
     //change slides on key press
     window.addEventListener('keydown', (e) => {
