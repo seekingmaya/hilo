@@ -3,6 +3,14 @@ import '../img/favicon.ico';
 require('intersection-observer');
 import { generateSlides, shuffledData } from './generateSlides';
 
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
 generateSlides();
 window.addEventListener('load', function () {
     let sliderLogo = document.querySelectorAll(".logo__wrapper");

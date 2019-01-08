@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 19vmin;
+    padding-bottom: calc(var(--vh, 1vh) * 11);
     transition: opacity .85s cubic-bezier(.455, .03, .515, .955);
     opacity: 0;
     &\--visible {
@@ -39,7 +39,7 @@
         background-position: 50% 50%;
         background-size: contain;
         margin: 0;
-        margin-bottom: 2vh;
+        margin-bottom: calc(var(--vh, 1vh) * 2);
         &\--desktop {
             display: none;
         }
