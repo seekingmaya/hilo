@@ -4,7 +4,6 @@
     height: auto;
     -webkit-transform: translateZ(0); //to remove jumping due to pixel rounding during transition in crome
     cursor: pointer;
-    padding-bottom: calc(var(--vh, 1vh) * 4.39);
     background-color: white;
     text-align: center;
     &__svg {
