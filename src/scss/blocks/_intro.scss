@@ -17,8 +17,8 @@
         background-color: white;
     }
     @media (max-width: $tablet),
-    (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2),
-    (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    (device-width: 1366px) and (device-height: 1024px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
         display: none;
     }
 }
