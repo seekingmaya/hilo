@@ -156,7 +156,7 @@ window.addEventListener('load', function () {
     slides.forEach((element) => intersectionObserver.observe(element));
 
 
-    function moveLeft(e) {
+    function moveUp(e) {
         let current = document.querySelector(".show-slide");
         let currentNumber = parseInt(current.dataset.id);
         if (current) {
@@ -171,7 +171,7 @@ window.addEventListener('load', function () {
             setTimeout(changeBorder, 850, newIndex);
         }
     } //show slide to the right
-    function moveRight(e) {
+    function moveDown(e) {
         let current = document.querySelector(".show-slide");
         let currentNumber = parseInt(current.dataset.id);
         if (current) {
@@ -209,7 +209,7 @@ window.addEventListener('load', function () {
         backgroundFirst = !backgroundFirst;
     } //change slides every 4secs
     function runTimer() {
-        timerId = setInterval(() => { moveRight() }, 4000);
+        timerId = setInterval(() => { moveDown() }, 4000);
     }
     function stopTimer() {
         clearInterval(timerId);
@@ -225,16 +225,16 @@ window.addEventListener('load', function () {
             return; // Do nothing if the event was already processed
         }
         switch (e.key) {
-            case "Left": // IE/Edge specific value
-                moveLeft(e);
+            case "Up": // IE/Edge specific value
+                moveUp(e);
                 stopTimer();
-            case "ArrowLeft": moveLeft(e);
+            case "ArrowUp": moveUp(e);
                 stopTimer();
                 break;
-            case "Right": // IE/Edge specific value
-                moveRight(e);
+            case "Down": // IE/Edge specific value
+                moveDown(e);
                 stopTimer();
-            case "ArrowRight": moveRight(e);
+            case "ArrowDown": moveDown(e);
                 stopTimer();
                 break;
             case " ": zoom(e);
