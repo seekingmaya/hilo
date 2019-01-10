@@ -9,6 +9,7 @@
     align-items: center;
     transition: opacity .85s cubic-bezier(.455, .03, .515, .955);
     opacity: 0;
+    transform: translate3d(1.0, 1.0, 1.0);
     &\--visible {
         opacity: 1;
     }
