@@ -46,9 +46,15 @@
             &\--3 {
                 opacity: 0;
                 background-color: black;
-                animation: border-fade 6.55s cubic-bezier(.455, .03, .515, .955);
+                animation: border-fade 3.55s cubic-bezier(.455, .03, .515, .955);
                 transition: initial;
             }
+        }
+    }
+    @media(device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape),
+    (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        &__background\--3 {
+            animation: initial;
         }
     }
 }
@@ -57,10 +63,10 @@
     0% {
         opacity: 0;
     }
-    12.9771% {
+    23.9437% {
         opacity: 1;
     }
-    87.0229% {
+    76.0563% {
         opacity: 1;
     }
     100% {

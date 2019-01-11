@@ -31,9 +31,11 @@
             position: relative;
             transition: all .85s cubic-bezier(.455, .03, .515, .955);
             -webkit-font-smoothing: subpixel-antialiased;
-            transform: scale3d(1, 1, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             &\--big {
-                transform: scale3d(2.08, 2.08, 2.08);
+                transform: scale(2.08);
                 .column-left {
                     z-index: 1;
                     opacity: 1;
@@ -95,9 +97,6 @@
             width: 50%;
             height: 50%;
             position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); // display: block;
             border: var(--edge-width, 5px) solid transparent;
             background-color: white;
             background-clip: padding-box;
@@ -290,7 +289,7 @@
             }
         }
     }
-    @media (max-width: 1024px) and (orientation: landscape),
+    @media (max-width: $tablet) and (orientation: landscape),
     (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape),
     (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
         &__cube {

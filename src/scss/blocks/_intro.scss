@@ -13,12 +13,12 @@
         z-index: -1;
         background-size: 32%;
         opacity: 0;
-        animation: hide-intro 4.85s cubic-bezier(.455, .03, .515, .955) forwards;
+        animation: hide-intro 1.85s cubic-bezier(.455, .03, .515, .955) forwards;
         background-color: white;
     }
-    @media (max-width: $tablet - 1),
-    (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2),
-    (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    @media (max-width: $tablet),
+    (device-width: 1366px) and (device-height: 1024px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
         display: none;
     }
 }
@@ -28,7 +28,7 @@
         opacity: 1;
         z-index: 11;
     }
-    82.4742% {
+    0.459459% {
         opacity: 1;
         z-index: 11;
     }

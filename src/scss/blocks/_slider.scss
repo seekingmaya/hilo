@@ -10,6 +10,16 @@
     z-index: 10;
     opacity: 1;
     background-color: white;
+    &::before {
+        height: calc(var(--vh, 1vh) * 4.39);
+        content: '';
+        width: 100%;
+        position: absolute;
+        top: -1px;
+        left: 0;
+        background-color: white;
+        z-index: 2;
+    }
     &__wrapper {
         flex-grow: 1;
         overflow: hidden;
@@ -35,6 +45,9 @@
         position: relative;
         padding: 0;
         background-color: transparent;
+        &::before {
+            display: none;
+        }
         &__content {
             position: relative;
             padding: 0;
