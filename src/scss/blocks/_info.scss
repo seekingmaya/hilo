@@ -41,7 +41,7 @@
         line-height: 2.8em;
         font-weight: 300;
         letter-spacing: 0.05em;
-        margin-bottom: calc(var(--vh, 1vh) * 5);
+        font-size: calc(var(--vh, 1vh) * 1.95);
         text-align: center;
         &\--desktop {
             display: none;
