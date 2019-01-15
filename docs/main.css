@@ -372,7 +372,7 @@ body {
     -webkit-overflow-scrolling: touch;
     height: 100%; }
   .slider--slides-visible .slide {
-    opacity: 1; }
+    opacity: 1 !important; }
   @media (orientation: landscape), screen and (min-width: 1280px) {
     .slider {
       position: relative;
@@ -1080,9 +1080,7 @@ body {
       top: 0;
       left: 0;
       opacity: 0;
-      z-index: -1;
-      -webkit-transition: opacity 0.4s cubic-bezier(0.02, 0.01, 0.47, 1);
-      transition: opacity 0.4s cubic-bezier(0.02, 0.01, 0.47, 1); }
+      z-index: -1; }
       .about__content {
         margin-right: auto;
         margin-left: auto; }

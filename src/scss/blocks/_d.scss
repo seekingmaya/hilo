@@ -62,10 +62,10 @@
             display: block;
             position: absolute;
             background-color: transparent;
-            transition: width 3s linear, height 3s linear;
+            transition: width 0.85s ease-out, height 0.85s ease-out, top 0.85s ease-out, left 0.85s ease-out;
             &::before,
             &::after {
-                transition: width 3s linear, height 3s linear, top 3s linear;
+                transition: width 0.85s ease-out, height 0.85s ease-out, top 0.85s ease-out;
             }
         }
         &__cube-face\--top-right {
@@ -103,13 +103,14 @@
             height: 50%;
             position: relative;
             border: var(--edge-width, 5px) solid transparent;
+            transition: border 0.85s ease-out;
             background-color: white;
             background-clip: padding-box;
             padding: 4.9vmin 6.1vmin 4.9vmin 6.1vmin;
         }
         &__cube-face\--top-left {
             width: calc(25% + var(--edge-width, 5px));
-            height: calc(25% + var(--edge-width, 5px));
+            height: calc(25% + var(--edge-width, 5px)); // transition: width 0.85s linear, height 0.85s linear;
             left: 0;
             top: 0;
             &::after {
