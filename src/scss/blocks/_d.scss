@@ -29,7 +29,7 @@
             width: 100%;
             height: 100%;
             position: relative;
-            transition: all .85s cubic-bezier(.455, .03, .515, .955);
+            transition: transform .85s cubic-bezier(.455, .03, .515, .955);
             -webkit-font-smoothing: subpixel-antialiased;
             display: flex;
             align-items: center;
@@ -321,6 +321,13 @@
             }
             .slider__content {
                 z-index: 1;
+            }
+        }
+        &__cube-face {
+            transition: initial;
+            &:before,
+            &:after {
+                transition: initial;
             }
         }
         &__cube-face\--back:before {

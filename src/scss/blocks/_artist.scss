@@ -4,7 +4,8 @@
         height: 20%;
         position: relative;
         opacity: 0;
-        z-index: -1; // transition: opacity 0.4s cubic-bezier(.02, .01, .47, 1);
+        z-index: -1;
+        transition: opacity 0.4s cubic-bezier(.02, .01, .47, 1);
         transition-delay: 0.4s;
         &__item {
             position: absolute;
@@ -43,8 +44,7 @@
             text-align: left;
             font-size: 0.5279vw;
             letter-spacing: 0.1333em;
-            line-height: 2em;
-            transition: opacity .85s, color 0.3s;
+            line-height: 2em; // transition: opacity .85s, color 0.3s;
             color: #9b9b9b;
             text-decoration: none;
             display: block;

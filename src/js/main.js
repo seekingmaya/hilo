@@ -20,13 +20,14 @@ window.addEventListener('load', function () {
     let sliderParent = document.querySelector(".slider");
     let slides = document.querySelectorAll(".slide");
     let prevSlideIndex = 0;
+    let prevTopOffset = 0;
+    let topOffset = 0;
     let cube = document.querySelector('.d__cube');
     let back = document.querySelector(".d__cube-face--back");
     let sliderWrapper = document.querySelector(".slider__wrapper");
     let timerId;
     let slideIndex = 0;
     let artistTimeout;
-    let animationID;
     let background1 = document.querySelector(".container__background--1");
     let background2 = document.querySelector(".container__background--2");
     let blackCube = document.querySelector(".container__background--3");
@@ -35,6 +36,9 @@ window.addEventListener('load', function () {
     let backgroundFirst = true;
     let artists = document.querySelectorAll(".artist__item");
     let navScrollInProgress = false;
+    let scrollPosition;
+    let landscape = window.matchMedia('(orientation: landscape)');
+    let portrait = window.matchMedia('(orientation: portrait)');
     let zoomTransform = "matrix(2.08, 0, 0, 2.08, 0, 0)";
     let tablet = window.matchMedia(`(max-width: 1024px),(min-device-width: 1024px) and (max-device-width: 1024px)
     ,(device-width: 1366px) and (device-height: 1024px) `);
@@ -100,8 +104,58 @@ window.addEventListener('load', function () {
     }
 
 
+    //restore slider position
+
+    // [landscape, portrait].forEach(el => el.addListener(handleOrientationChange));
+
+    // function handleOrientationChange(evt) {
+    //     // let n = parseInt(el.href.split("#slide")[1]);
+    //     let offset = slider.scrollHeight * prevTopOffset;
+    //     TweenLite.to(slider, 0, { scrollTo: offset });
+
+    //     topOffset = prevTopOffset;
+    //     // alert("w")
+    // }
+
+
     //show info
-    sliderLogo.forEach(logo => logo.addEventListener('click', (e) => container.classList.toggle("show-info")));
+    sliderLogo.forEach(logo => logo.addEventListener('click', (e) => {
+        container.classList.toggle("show-info");
+
+        // if (landscape.matches) {
+        //     let about = document.querySelector(".about");
+        //     let contacts = document.querySelector(".contacts");
+        //     let artist = document.querySelector(".artist");
+        //     let nav = document.querySelector(".nav");
+
+        //     if (container.classList.contains("show-info")) {
+
+        //         animate({ draw(progress) { sliderParent.style.opacity = 1 - progress; } });
+        //         animate({ draw(progress) { artist.style.opacity = 1 - progress; } });
+        //         animate({ draw(progress) { nav.style.opacity = 1 - progress; } });
+
+        //         setTimeout(() => {
+
+        //             animate({ draw(progress) { about.style.opacity = progress; } });
+        //             animate({ draw(progress) { contacts.style.opacity = progress; } });
+
+        //         }, 400);
+        //     }
+
+        //     else {
+        //         animate({ draw(progress) { about.style.opacity = 1 - progress; } });
+        //         animate({ draw(progress) { contacts.style.opacity = 1 - progress; } });
+
+        //         setTimeout(() => {
+
+        //             animate({ draw(progress) { sliderParent.style.opacity = progress; } });
+        //             animate({ draw(progress) { artist.style.opacity = progress; } });
+        //             animate({ draw(progress) { nav.style.opacity = progress; } });
+        //         }, 400);
+        //     }
+
+        // }
+    }));
 
 
 
@@ -110,11 +164,13 @@ window.addEventListener('load', function () {
         el.addEventListener('click', e => {
             if (TweenLite) {
                 e.preventDefault();
+                detectInteraction();
                 let n = parseInt(el.href.split("#slide")[1]);
-                let topOffset = slider.clientHeight * n;
+                prevTopOffset = topOffset;
+                topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
                 navScrollInProgress = true;
                 //prevents nav dots for slides that's not the tagret lighting up when user clicks on nav
-                TweenLite.to(slider, 1, { scrollTo: topOffset, onComplete: () => navScrollInProgress = false });
+                TweenLite.to(slider, 1, { scrollTo: n * slider.clientHeight, onComplete: () => navScrollInProgress = false });
                 activateNav(el);
 
                 changeBorderifZoomedOut(n);
@@ -180,6 +236,8 @@ window.addEventListener('load', function () {
                     activateNav(nav);
 
                     showArtistName(slideIndex);
+                    prevTopOffset = topOffset;
+                    topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
 
                 }
 
