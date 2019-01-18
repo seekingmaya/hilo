@@ -36,6 +36,9 @@
         justify-content: center;
         align-items: center;
     }
+    &__first-page {
+        padding-bottom: calc(var(--vh, 1vh) * 4.5);
+    }
     &__description {
         font-size: 3.9vmin;
         line-height: 2.8em;
@@ -43,9 +46,7 @@
         letter-spacing: 0.05em;
         font-size: calc(var(--vh, 1vh) * 1.95);
         text-align: center;
-        &\--desktop {
-            display: none;
-        }
+        margin-bottom: calc(var(--vh, 1vh) * 5);
     }
     &__schedule {
         margin-bottom: 0;
@@ -88,9 +89,10 @@
     &__email {
         color: black;
         text-decoration: none;
+        margin-bottom: calc(var(--vh, 1vh) * 7);
     }
     &__address {
-        margin-bottom: calc(var(--vh, 1vh) * 8);
+        margin-bottom: calc(var(--vh, 1vh) * 8.5);
     }
     &__instagram {
         display: inline-block;
