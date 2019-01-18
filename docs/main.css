@@ -406,6 +406,9 @@ body {
         position: relative;
         overflow: hidden;
         cursor: pointer; } }
+  @media (max-width: 1024px) and (orientation: landscape), (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape), (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    .slider__wrapper {
+      pointer-events: none; } }
 
 .slide {
   height: 100%;
