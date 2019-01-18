@@ -299,7 +299,7 @@
     (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape),
     (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
         &__cube {
-            transform: scale(2.08);
+            // transform: scale(2.08);
             transition: initial;
             background-color: white;
             .column-left {
@@ -324,10 +324,16 @@
             }
         }
         &__cube-face {
+            display: none;
             transition: initial;
             &:before,
             &:after {
                 transition: initial;
+            }
+            &\--back {
+                width: 100%;
+                height: 100%;
+                display: flex;
             }
         }
         &__cube-face\--back:before {

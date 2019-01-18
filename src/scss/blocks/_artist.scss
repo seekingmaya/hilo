@@ -53,4 +53,14 @@
             }
         }
     }
+    @media (max-width: $tablet) and (orientation: landscape),
+    (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape),
+    (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        &__name {
+            font-size: 1.1vw;
+        }
+        &__portfolio {
+            font-size: 1.1vw;
+        }
+    }
 }
