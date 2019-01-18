@@ -39,6 +39,16 @@
     (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
         &__text {
             font-size: 1.1vw;
+            margin-bottom: calc(var(--vh, 1vh) * 3.744);
+        }
+        &__instagram-svg {
+            width: 2vw;
+            height: 2vw;
+        }
+        &__instagram {
+            text-align: right;
+            margin-top: 0.5824vw;
+            margin-bottom: 2.2vw;
         }
     }
 }
