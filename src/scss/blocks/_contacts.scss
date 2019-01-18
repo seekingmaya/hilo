@@ -18,6 +18,10 @@
             display: block;
             white-space: nowrap;
             margin-bottom: calc(var(--vh, 1vh) * 1.8);
+            transition: color 0.3s;
+            &:hover {
+                color: #666;
+            }
         }
         &__instagram {
             text-align: right;
