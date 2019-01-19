@@ -20,7 +20,7 @@ window.addEventListener('load', function () {
     let sliderParent = document.querySelector(".slider");
     let slides = document.querySelectorAll(".slide");
     let prevSlideIndex = 0;
-    let prevTopOffset = 0;
+    // let prevTopOffset = 0;
     let topOffset = 0;
     let cube = document.querySelector('.d__cube');
     let back = document.querySelector(".d__cube-face--back");
@@ -166,8 +166,8 @@ window.addEventListener('load', function () {
                 e.preventDefault();
                 detectInteraction();
                 let n = parseInt(el.href.split("#slide")[1]);
-                prevTopOffset = topOffset;
-                topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
+                // prevTopOffset = topOffset;
+                // topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
                 navScrollInProgress = true;
                 //prevents nav dots for slides that's not the tagret lighting up when user clicks on nav
                 TweenLite.to(slider, 1, { scrollTo: n * slider.clientHeight, onComplete: () => navScrollInProgress = false });
@@ -236,8 +236,8 @@ window.addEventListener('load', function () {
                     activateNav(nav);
 
                     showArtistName(slideIndex);
-                    prevTopOffset = topOffset;
-                    topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
+                    // prevTopOffset = topOffset;
+                    // topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
 
                 }
 
