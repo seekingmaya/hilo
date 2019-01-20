@@ -301,6 +301,9 @@
         &__cube {
             transition: initial;
             background-color: white;
+            &\--big {
+                transform: initial;
+            }
             .column-left {
                 z-index: 1;
                 opacity: 1;

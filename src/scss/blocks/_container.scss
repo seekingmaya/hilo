@@ -46,7 +46,7 @@
             &\--3 {
                 opacity: 0;
                 background-color: black;
-                animation: border-fade 3.55s cubic-bezier(.455, .03, .515, .955);
+                animation: border-fade 2.7s cubic-bezier(.455, .03, .515, .955);
                 transition: initial;
             }
         }
@@ -63,10 +63,10 @@
     0% {
         opacity: 0;
     }
-    23.9437% {
+    31.4815% {
         opacity: 1;
     }
-    76.0563% {
+    68.5185% {
         opacity: 1;
     }
     100% {

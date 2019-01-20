@@ -2,8 +2,8 @@
     opacity: 1; // transition: opacity .85s cubic-bezier(.455, .03, .515, .955); // transition-delay: 0.85s;
     @media (orientation: landscape), screen and (min-width: $desktop) {
         &#slide0 {
-            opacity: 1;
-            animation: show-slide 2.7s cubic-bezier(.455, .03, .515, .955) forwards;
+            opacity: 0;
+            animation: show-slide 0.85s cubic-bezier(.455, .03, .515, .955) 1.85s forwards;
         }
         opacity: 0;
         z-index: 1; // transform: translateZ(0);
@@ -12,9 +12,6 @@
 
 @keyframes show-slide {
     0% {
-        opacity: 0;
-    }
-    68.5185% {
         opacity: 0;
     }
     100% {
