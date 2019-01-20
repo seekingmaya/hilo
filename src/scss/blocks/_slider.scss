@@ -76,5 +76,8 @@
         &__wrapper {
             pointer-events: none;
         }
+        &__content {
+            pointer-events: auto;
+        }
     }
 }

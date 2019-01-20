@@ -39,9 +39,9 @@ window.addEventListener('load', function () {
     let scrollPosition;
     let landscape = window.matchMedia('(orientation: landscape)');
     let portrait = window.matchMedia('(orientation: portrait)');
-    let zoomTransform = "matrix(2.08, 0, 0, 2.08, 0, 0)";
     let tablet = window.matchMedia(`(max-width: 1024px),(min-device-width: 1024px) and (max-device-width: 1024px)
     ,(device-width: 1366px) and (device-height: 1024px) `);
+
 
 
     function init() {
@@ -49,17 +49,19 @@ window.addEventListener('load', function () {
             //intro animation
             intro.addEventListener("animationend", introAnimation);
             let currentSlide = document.querySelector(".show-slide");
+            currentSlide.addEventListener('animationstart', () => {
+                changeBorder(0);
+            });
             currentSlide.addEventListener("animationend", () => {
 
                 currentSlide.style.animation = "initial";
-                changeBorder(0);
+                currentSlide.style.opacity = "1";
                 runTimer();
                 setTimeout(function () {
                     sliderParent.classList.add("slider--big");
                     cube.classList.add("d__cube--big");
-                }, 2850);
-            }
-            );
+                }, 1850);
+            });
         }
         else {
             tabletAndMobileAnimation();
@@ -104,58 +106,8 @@ window.addEventListener('load', function () {
     }
 
 
-    //restore slider position
-
-    // [landscape, portrait].forEach(el => el.addListener(handleOrientationChange));
-
-    // function handleOrientationChange(evt) {
-    //     // let n = parseInt(el.href.split("#slide")[1]);
-    //     let offset = slider.scrollHeight * prevTopOffset;
-    //     TweenLite.to(slider, 0, { scrollTo: offset });
-
-    //     topOffset = prevTopOffset;
-    //     // alert("w")
-    // }
-
-
     //show info
-    sliderLogo.forEach(logo => logo.addEventListener('click', (e) => {
-        container.classList.toggle("show-info");
-
-        // if (landscape.matches) {
-        //     let about = document.querySelector(".about");
-        //     let contacts = document.querySelector(".contacts");
-        //     let artist = document.querySelector(".artist");
-        //     let nav = document.querySelector(".nav");
-
-        //     if (container.classList.contains("show-info")) {
-
-        //         animate({ draw(progress) { sliderParent.style.opacity = 1 - progress; } });
-        //         animate({ draw(progress) { artist.style.opacity = 1 - progress; } });
-        //         animate({ draw(progress) { nav.style.opacity = 1 - progress; } });
-
-        //         setTimeout(() => {
-
-        //             animate({ draw(progress) { about.style.opacity = progress; } });
-        //             animate({ draw(progress) { contacts.style.opacity = progress; } });
-
-        //         }, 400);
-        //     }
-
-        //     else {
-        //         animate({ draw(progress) { about.style.opacity = 1 - progress; } });
-        //         animate({ draw(progress) { contacts.style.opacity = 1 - progress; } });
-
-        //         setTimeout(() => {
-
-        //             animate({ draw(progress) { sliderParent.style.opacity = progress; } });
-        //             animate({ draw(progress) { artist.style.opacity = progress; } });
-        //             animate({ draw(progress) { nav.style.opacity = progress; } });
-        //         }, 400);
-        //     }
-
-        // }
-    }));
+    sliderLogo.forEach(logo => logo.addEventListener('click', (e) => { container.classList.toggle("show-info") }));
 
 
 
@@ -166,8 +118,7 @@ window.addEventListener('load', function () {
                 e.preventDefault();
                 detectInteraction();
                 let n = parseInt(el.href.split("#slide")[1]);
-                // prevTopOffset = topOffset;
-                // topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
+                // prevOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
                 navScrollInProgress = true;
                 //prevents nav dots for slides that's not the tagret lighting up when user clicks on nav
                 TweenLite.to(slider, 1, { scrollTo: n * slider.clientHeight, onComplete: () => navScrollInProgress = false });
@@ -177,7 +128,6 @@ window.addEventListener('load', function () {
 
                 showArtistName(n);
 
-                // prevSlideIndex = n;
             }
         }
         );
@@ -236,8 +186,8 @@ window.addEventListener('load', function () {
                     activateNav(nav);
 
                     showArtistName(slideIndex);
-                    // prevTopOffset = topOffset;
-                    // topOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
+
+                    // prevOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
 
                 }
 
@@ -268,7 +218,6 @@ window.addEventListener('load', function () {
             let timeFraction = (time - start) / duration;
             if (timeFraction > 1) timeFraction = 1;
 
-            // текущее состояние анимации
             let progress = timing(timeFraction)
 
             options.draw(progress);
@@ -285,7 +234,7 @@ window.addEventListener('load', function () {
         let current = document.querySelector(".show-slide");
         let currentNumber = parseInt(current.dataset.id);
         if (current) {
-            // if (e) e.stopPropagation();
+
             let newIndex = currentNumber > 0 ? currentNumber - 1 : slides.length - 1;
             let newSlide = slides[newIndex];
             current.classList.remove("show-slide");
@@ -336,7 +285,8 @@ window.addEventListener('load', function () {
     //change cubes edge background when gallary image changes
 
     function changeBorderifZoomedOut(index) {
-        if (getComputedStyle(cube).getPropertyValue('transform') != zoomTransform) {
+        //check if zoomed out and not tablet
+        if (!cube.classList.contains("d__cube--big") && document.documentElement.clientWidth != back.clientWidth) {
             setTimeout(changeBorder, 850, index);
         }
     }
@@ -375,12 +325,12 @@ window.addEventListener('load', function () {
         sliderParent.classList.toggle("slider--big");
         cube.classList.toggle("d__cube--big");
 
-        if (cube.style.transform != zoomTransform) {
+        if (!cube.classList.contains("d__cube--big") && document.documentElement.clientWidth != back.clientWidth) {
             let current = document.querySelector(".show-slide");
             let currentNumber = parseInt(current.dataset.id);
             changeBorder(currentNumber);
-
         }
+
     }
     //change slides on key press
     window.addEventListener('keydown', (e) => {
