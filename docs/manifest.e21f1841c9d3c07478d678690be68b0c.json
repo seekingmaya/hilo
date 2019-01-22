@@ -31,8 +31,8 @@
       "type": "image/png"
     }
   ],
-  "name": "hilo",
-  "short_name": "hilo",
+  "name": "HILO",
+  "short_name": "HILO",
   "orientation": "portrait",
   "display": "standalone",
   "start_url": ".",

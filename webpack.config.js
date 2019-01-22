@@ -116,7 +116,7 @@ module.exports = {
       { from: 'src/assets', to: 'assets' }
     ]),
     new WebpackPwaManifest({
-      name: 'hilo',
+      name: 'HILO',
       description: 'Contemporary art gallery representing emerging artists from Latin America',
       ios: true,
       icons: [
