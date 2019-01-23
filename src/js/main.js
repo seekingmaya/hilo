@@ -20,7 +20,7 @@ window.addEventListener('load', function () {
     let sliderParent = document.querySelector(".slider");
     let slides = document.querySelectorAll(".slide");
     let prevSlideIndex = 0;
-    // let prevTopOffset = 0;
+    let prevOffset = 0;
     let topOffset = 0;
     let cube = document.querySelector('.d__cube');
     let back = document.querySelector(".d__cube-face--back");
@@ -36,7 +36,6 @@ window.addEventListener('load', function () {
     let backgroundFirst = true;
     let artists = document.querySelectorAll(".artist__item");
     let navScrollInProgress = false;
-    let scrollPosition;
     let landscape = window.matchMedia('(orientation: landscape)');
     let portrait = window.matchMedia('(orientation: portrait)');
     let tablet = window.matchMedia(`(max-width: 1024px),(min-device-width: 1024px) and (max-device-width: 1024px)
@@ -109,6 +108,31 @@ window.addEventListener('load', function () {
     //show info
     sliderLogo.forEach(logo => logo.addEventListener('click', (e) => { container.classList.toggle("show-info") }));
 
+
+    function doOnOrientationChange() {
+        prevOffset = Number.parseFloat(slider.scrollTop / slider.scrollHeight).toFixed(2);
+        slider.style.opacity = "0";
+        setTimeout(() => {
+
+            switch (window.orientation) {
+                case 90:
+                case -90:
+                case 0:
+                    preserveSliderPosition();
+            }
+        }, 200)
+
+    }
+
+    window.addEventListener('orientationchange', doOnOrientationChange);
+
+
+    function preserveSliderPosition() {
+        let offset = (slider.scrollHeight * parseFloat(prevOffset));
+        TweenLite.to(slider, 0, { scrollTo: offset });
+        slider.style.opacity = "1";
+
+    }
 
 
     //scroll to slide when nav clicked
@@ -186,8 +210,6 @@ window.addEventListener('load', function () {
                     activateNav(nav);
 
                     showArtistName(slideIndex);
-
-                    // prevOffset = Number.parseFloat(slider.clientHeight * slideIndex / slider.scrollHeight).toFixed(2);
 
                 }
 

@@ -8,6 +8,13 @@
         opacity: 0;
         z-index: 1; // transform: translateZ(0);
     }
+    @media (max-width: $tablet) and (orientation: landscape),
+    (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape),
+    (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        &#slide0 {
+            opacity: 1;
+        }
+    }
 }
 
 @keyframes show-slide {

@@ -572,6 +572,9 @@ body {
         opacity: 0;
         -webkit-animation: show-slide 0.85s cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.85s forwards;
                 animation: show-slide 0.85s cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.85s forwards; } }
+  @media (max-width: 1024px) and (orientation: landscape), (device-width: 1366px) and (device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape), (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    .show-slide#slide0 {
+      opacity: 1; } }
 
 @-webkit-keyframes show-slide {
   0% {
