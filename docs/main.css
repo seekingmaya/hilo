@@ -145,7 +145,6 @@ body {
   .info__schedule {
     margin-bottom: 0; }
   .info__header {
-    text-transform: uppercase;
     font-weight: 700;
     text-align: center;
     color: #000000;

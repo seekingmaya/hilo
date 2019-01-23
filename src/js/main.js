@@ -4,13 +4,22 @@ require('intersection-observer');
 import { generateSlides, shuffledData } from './generateSlides';
 import BezierEasing from './BezierEasing';
 
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-window.addEventListener('resize', () => {
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
-});
+}
+
+else {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+    window.addEventListener('resize', () => {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+}
+
+
 
 generateSlides();
 window.addEventListener('load', function () {
