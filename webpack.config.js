@@ -118,6 +118,7 @@ module.exports = {
     new WebpackPwaManifest({
       name: 'HILO',
       description: 'Contemporary art gallery representing emerging artists from Latin America',
+      orientation: "omit",
       ios: true,
       icons: [
         {

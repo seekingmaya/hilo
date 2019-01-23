@@ -58,7 +58,7 @@ function generateSlides() {
     nav.innerHTML = navStr;
 
     info.innerHTML = `<h2 class="info__header">
-                            artists
+                            Artists
                         </h2>
                         ${infoStr}`;
 
