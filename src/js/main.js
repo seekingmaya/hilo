@@ -3,6 +3,7 @@ import '../img/favicon.ico';
 require('intersection-observer');
 import { generateSlides, shuffledData } from './generateSlides';
 import BezierEasing from './BezierEasing';
+import { positionSlider } from './positionSlider';
 
 if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
     let vh = window.innerHeight * 0.01;
@@ -29,7 +30,6 @@ window.addEventListener('load', function () {
     let sliderParent = document.querySelector(".slider");
     let slides = document.querySelectorAll(".slide");
     let prevSlideIndex = 0;
-    let prevOffset = 0;
     let topOffset = 0;
     let cube = document.querySelector('.d__cube');
     let back = document.querySelector(".d__cube-face--back");
@@ -76,6 +76,7 @@ window.addEventListener('load', function () {
         }
 
         checkInteraction();
+        positionSlider(slider);
 
     }
 
@@ -116,32 +117,6 @@ window.addEventListener('load', function () {
 
     //show info
     sliderLogo.forEach(logo => logo.addEventListener('click', (e) => { container.classList.toggle("show-info") }));
-
-
-    function doOnOrientationChange() {
-        prevOffset = Number.parseFloat(slider.scrollTop / slider.scrollHeight).toFixed(2);
-        slider.style.opacity = "0";
-        setTimeout(() => {
-
-            switch (window.orientation) {
-                case 90:
-                case -90:
-                case 0:
-                    preserveSliderPosition();
-            }
-        }, 200)
-
-    }
-
-    window.addEventListener('orientationchange', doOnOrientationChange);
-
-
-    function preserveSliderPosition() {
-        let offset = (slider.scrollHeight * parseFloat(prevOffset));
-        TweenLite.to(slider, 0, { scrollTo: offset });
-        slider.style.opacity = "1";
-
-    }
 
 
     //scroll to slide when nav clicked
