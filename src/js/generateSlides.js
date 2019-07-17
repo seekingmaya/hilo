@@ -36,7 +36,7 @@ function generateSlides() {
                         ${el.firstname.toUpperCase()} ${el.lastname.toUpperCase()}
                         </a>
                         <a href="../assets/${capitalize(el.firstname)} ${capitalize(el.lastname)}.pdf" class="artist__portfolio" download>
-                            Portfolio
+                            Download Portfolio
                         </a>
                     </div>`;
 
