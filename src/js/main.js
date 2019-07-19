@@ -22,7 +22,7 @@ if (
 }
 
 generateSlides();
-window.addEventListener("load", function() {
+document.addEventListener("DOMContentLoaded", function() {
   let sliderLogo = document.querySelectorAll(".logo__wrapper");
   let container = document.querySelector(".container");
   let slider = document.querySelector(".slider__content");
