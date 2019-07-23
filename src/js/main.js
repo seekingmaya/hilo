@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
           sliderParent.classList.add("slider--big");
           cube.classList.add("d__cube--big");
-        }, 20);
+        }, 900);
       });
     } else {
       tabletAndMobileAnimation();
